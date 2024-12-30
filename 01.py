@@ -126,3 +126,12 @@ list2 = [87490, 16584, 82503, 27659, 96436, 17549, 12666, 26039, 13799, 88618, 1
          82172, 79365, 75552, 10655, 78297, 91025, 90722, 76625, 76014, 27659, 13414, 27659, 39842, 32248, 24213, 23607,
          94475, 86813, 61514, 99467, 91025, 91094, 71742, 24213]
 
+list1_sorted = sorted(list1)
+list2_sorted = sorted(list2)
+total_distance = 0
+
+for i in range(len(list1_sorted)):
+    distance = abs(list1_sorted[i] - list2_sorted[i])
+    total_distance += distance
+
+print(total_distance)
