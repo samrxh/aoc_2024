@@ -135,3 +135,14 @@ for i in range(len(list1_sorted)):
     total_distance += distance
 
 print(total_distance)
+
+similarity = 0
+
+for i in list1:
+    number_found = 0
+    for j in list2:
+        if i == j:
+            number_found += 1
+    similarity += i * number_found
+
+print(similarity)
