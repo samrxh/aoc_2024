@@ -999,3 +999,32 @@ reports = [[35, 37, 38, 41, 43, 41],
            [47, 49, 50, 52, 53, 54, 57, 59],
            [28, 29, 32, 33, 34]]
 
+number_safe = 0
+
+for report in reports:
+    safe = True
+    increasing = None
+    for i in range(len(report) - 1):
+        if report[i] < report[i + 1]:
+            if increasing is None:
+                increasing = True
+            elif not increasing:
+                safe = False
+                break
+        else:
+            if increasing is None:
+                increasing = False
+            elif increasing:
+                safe = False
+                break
+        distance = abs(report[i] - report[i + 1])
+        if distance == 0:
+            safe = False
+            break
+        elif distance > 3:
+            safe = False
+            break
+    if safe:
+        number_safe += 1
+
+print(number_safe)
