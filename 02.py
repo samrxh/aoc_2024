@@ -1001,30 +1001,41 @@ reports = [[35, 37, 38, 41, 43, 41],
 
 number_safe = 0
 
-for report in reports:
-    safe = True
+
+def check_report(report):
     increasing = None
+
     for i in range(len(report) - 1):
         if report[i] < report[i + 1]:
             if increasing is None:
                 increasing = True
             elif not increasing:
-                safe = False
-                break
-        else:
+                return False
+
+        elif report[i] > report[i + 1]:
             if increasing is None:
                 increasing = False
             elif increasing:
-                safe = False
-                break
+                return False
+
         distance = abs(report[i] - report[i + 1])
         if distance == 0:
-            safe = False
-            break
+            return False
         elif distance > 3:
-            safe = False
-            break
-    if safe:
+            return False
+
+    return True
+
+
+for report in reports:
+    if check_report(report):
         number_safe += 1
+    else:
+        for i in range(len(report)):
+            dampened_report = report.copy()
+            dampened_report.pop(i)
+            if check_report(dampened_report):
+                number_safe += 1
+                break
 
 print(number_safe)
